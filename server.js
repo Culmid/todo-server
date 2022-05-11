@@ -4,6 +4,9 @@ const Controller = require("./controllers/todoController");
 const server = http.createServer((req, res) => {
   if (req.url === "/api/todos" && req.method === "GET") {
     Controller.getTodos(req, res);
+  } else if (req.url.match(/\/api\/todo\/([0-9]+)/) && req.method === "GET") {
+    const id = parseInt(req.url.split("/")[3]);
+    Controller.getTodo(req, res, id);
   } else {
     res.writeHead(404, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ message: "Route Not Found" }));

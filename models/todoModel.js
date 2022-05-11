@@ -1,9 +1,16 @@
-const products = require("../data/todoData.json");
+const todos = require("../data/todoData.json");
 
 function findAllTodos() {
   return new Promise((resolve, reject) => {
-    resolve(products);
+    resolve(todos);
   });
 }
 
-module.exports = { findAllTodos };
+function findTodo(id) {
+  return new Promise((resolve, reject) => {
+    const todo = todos.find((todo) => todo.id === id);
+    resolve(todo);
+  });
+}
+
+module.exports = { findAllTodos, findTodo };
