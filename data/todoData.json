@@ -1,0 +1,23 @@
+[
+  {
+    "id": 0,
+    "title": "Clean dishes",
+    "isComplete": false,
+    "background": "#c4c4c4",
+    "color": "#000000"
+  },
+  {
+    "id": 1,
+    "title": "Take out trash",
+    "isComplete": false,
+    "background": "#00f",
+    "color": "#f00"
+  },
+  {
+    "id": 2,
+    "title": "Feed pets",
+    "isComplete": true,
+    "background": "#000",
+    "color": "#fff"
+  }
+]
