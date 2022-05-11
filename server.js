@@ -24,6 +24,7 @@ const server = http.createServer((req, res) => {
   }
 });
 
+require("dotenv").config();
 const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => {
