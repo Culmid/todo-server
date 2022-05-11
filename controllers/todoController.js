@@ -47,7 +47,7 @@ async function addTodo(req, res) {
 
     const newTodo = await Model.createTodo(todo);
 
-    res.writeHead(200, { "Content-Type": "application/json" });
+    res.writeHead(201, { "Content-Type": "application/json" });
     res.end(JSON.stringify(newTodo));
   } catch (error) {
     res.writeHead(500, { "Content-Type": "application/json" });
@@ -84,4 +84,24 @@ async function updateTodo(req, res, id) {
   }
 }
 
-module.exports = { getTodos, getTodo, addTodo, updateTodo };
+// DELETE /api/todo/{id}
+async function deleteTodo(req, res, id) {
+  try {
+    const todo = await Model.findTodo(id);
+
+    if (todo) {
+      await Model.removeTodo(id);
+
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: `Todo <${id}> Deleted` }));
+    } else {
+      res.writeHead(404, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "Todo Not Found" }));
+    }
+  } catch (error) {
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Internal Server Error" }));
+  }
+}
+
+module.exports = { getTodos, getTodo, addTodo, updateTodo, deleteTodo };

@@ -1,4 +1,4 @@
-const todos = require("../data/todoData.json");
+let todos = require("../data/todoData.json");
 const { updateDB } = require("../util");
 
 function findAllTodos() {
@@ -31,4 +31,12 @@ function reviseTodo(id, todoData) {
   });
 }
 
-module.exports = { findAllTodos, findTodo, createTodo, reviseTodo };
+function removeTodo(id) {
+  return new Promise((resolve, reject) => {
+    todos = todos.filter((todo) => todo.id !== id);
+    updateDB(todos);
+    resolve();
+  });
+}
+
+module.exports = { findAllTodos, findTodo, createTodo, reviseTodo, removeTodo };
