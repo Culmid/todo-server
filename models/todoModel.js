@@ -1,4 +1,5 @@
 const todos = require("../data/todoData.json");
+const { updateDB } = require("../util");
 
 function findAllTodos() {
   return new Promise((resolve, reject) => {
@@ -13,4 +14,12 @@ function findTodo(id) {
   });
 }
 
-module.exports = { findAllTodos, findTodo };
+function createTodo(todo) {
+  return new Promise((resolve, reject) => {
+    todos.push(todo);
+    updateDB(todos);
+    resolve(todo);
+  });
+}
+
+module.exports = { findAllTodos, findTodo, createTodo };

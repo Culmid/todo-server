@@ -19,5 +19,12 @@
     "isComplete": true,
     "background": "#000",
     "color": "#fff"
+  },
+  {
+    "id": 10,
+    "title": "Yolo",
+    "isComplete": false,
+    "background": "#000",
+    "color": "#fff"
   }
 ]
