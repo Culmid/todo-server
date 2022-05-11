@@ -22,4 +22,13 @@ function createTodo(todo) {
   });
 }
 
-module.exports = { findAllTodos, findTodo, createTodo };
+function reviseTodo(id, todoData) {
+  return new Promise((resolve, reject) => {
+    const index = todos.findIndex((todo) => todo.id === id);
+    todos[index] = { id, ...todoData };
+    updateDB(todos);
+    resolve(todos[index]);
+  });
+}
+
+module.exports = { findAllTodos, findTodo, createTodo, reviseTodo };

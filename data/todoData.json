@@ -22,8 +22,8 @@
   },
   {
     "id": 10,
-    "title": "Yolo",
-    "isComplete": false,
+    "title": "Yolo - You Only Live Once",
+    "isComplete": true,
     "background": "#000",
     "color": "#fff"
   }

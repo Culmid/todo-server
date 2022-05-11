@@ -55,4 +55,33 @@ async function addTodo(req, res) {
   }
 }
 
-module.exports = { getTodos, getTodo, addTodo };
+// PUT /api/todo/{id}
+async function updateTodo(req, res, id) {
+  try {
+    const todo = await Model.findTodo(id);
+
+    if (todo) {
+      const { title, isComplete, background, color } = await getBody(req);
+
+      const todoData = {
+        title: title || todo.title,
+        isComplete: isComplete || todo.isComplete,
+        background: background || todo.background,
+        color: color || todo.background,
+      };
+
+      const newTodo = await Model.reviseTodo(id, todoData);
+
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify(newTodo));
+    } else {
+      res.writeHead(404, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: "Todo Not Found" }));
+    }
+  } catch (error) {
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Internal Server Error" }));
+  }
+}
+
+module.exports = { getTodos, getTodo, addTodo, updateTodo };

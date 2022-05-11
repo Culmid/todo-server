@@ -9,6 +9,9 @@ const server = http.createServer((req, res) => {
     Controller.getTodo(req, res, id);
   } else if (req.url === "/api/todo" && req.method === "POST") {
     Controller.addTodo(req, res);
+  } else if (req.url.match(/\/api\/todo\/([0-9]+)/) && req.method === "PUT") {
+    const id = parseInt(req.url.split("/")[3]);
+    Controller.updateTodo(req, res, id);
   } else {
     res.writeHead(404, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ message: "Route Not Found" }));
