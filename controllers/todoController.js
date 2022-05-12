@@ -67,7 +67,7 @@ async function updateTodo(req, res, id) {
 
       const todoData = {
         title: title || todo.title,
-        isComplete: isComplete || todo.isComplete,
+        isComplete: isComplete === null ? todo.isComplete : isComplete,
         background: background || todo.background,
         color: color || todo.background,
       };
