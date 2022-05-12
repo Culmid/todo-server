@@ -4,8 +4,19 @@ const Controller = require("./controllers/todoController");
 const server = http.createServer((req, res) => {
   // Handle CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, Content-Type, X-Auth-Token"
+  );
 
-  if (req.url === "/api/todos" && req.method === "GET") {
+  if (req.method === "OPTIONS") {
+    res.writeHead(200);
+    res.end();
+  } else if (req.url === "/api/todos" && req.method === "GET") {
     Controller.getTodos(req, res);
   } else if (req.url.match(/\/api\/todo\/([0-9]+)/) && req.method === "GET") {
     const id = parseInt(req.url.split("/")[3]);
