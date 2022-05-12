@@ -2,6 +2,9 @@ const http = require("http");
 const Controller = require("./controllers/todoController");
 
 const server = http.createServer((req, res) => {
+  // Handle CORS
+  res.setHeader("Access-Control-Allow-Origin", "*");
+
   if (req.url === "/api/todos" && req.method === "GET") {
     Controller.getTodos(req, res);
   } else if (req.url.match(/\/api\/todo\/([0-9]+)/) && req.method === "GET") {

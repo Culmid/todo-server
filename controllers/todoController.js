@@ -6,7 +6,9 @@ async function getTodos(req, res) {
   try {
     const todos = await Model.findAllTodos();
 
-    res.writeHead(200, { "Content-Type": "application/json" });
+    res.writeHead(200, {
+      "Content-Type": "application/json",
+    });
     res.end(JSON.stringify(todos));
   } catch (error) {
     res.writeHead(500, { "Content-Type": "application/json" });
